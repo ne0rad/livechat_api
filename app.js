@@ -17,10 +17,10 @@ const io = socketIo(server, {
 io.on("connection", (socket) => {
     let time = new Date().toLocaleTimeString();
 
-    console.log('\x1b[32m%s\x1b[0m', "[socket.io] Client connected. " + time);
+    console.log('\x1b[32m%s\x1b[0m', `[socket.io][${time}] Client connected.`);
 
     socket.on("disconnect", () => {
-        console.log('\x1b[31m%s\x1b[0m', "[socket.io] Client disconnected. " + time);
+        console.log('\x1b[31m%s\x1b[0m', `[socket.io][${time}] Client disconnected.`);
     });
 
     socket.on('chat', (message) => {
