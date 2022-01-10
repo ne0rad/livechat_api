@@ -11,7 +11,7 @@ const { createUser, removeUser, getUser } = require("./user");
 
 const io = socketIo(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://ne0rad.github.io",
         methods: ["GET", "POST"]
     }
 });
@@ -33,7 +33,7 @@ io.on("connection", (socket) => {
     socket.on('sendMessage', (message, callback) => {
         let user = getUser(socket.id);
         if (user.error) return callback(user.error);
-        socket.in(user.roomID).emit('message', message);
+        socket.in(user.roomID).emit('message', { message: message, username: user.username });
         callback();
     })
 
